@@ -14,7 +14,7 @@ RUN apt-get update -qq && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
     apt-get install -y -qq \
     bc binutils-dev bison build-essential ca-certificates clang \
-    cmake curl file flex g++ gcc git libelf-dev libncurses5-dev \
+    cmake cpio curl file flex g++ gcc git libelf-dev libncurses5-dev \
     libssl-dev lld lz4 make ninja-build python3-dev python3-pip \
     rclone wget xz-utils zlib1g-dev zip zstd && \
     apt-get clean && \
