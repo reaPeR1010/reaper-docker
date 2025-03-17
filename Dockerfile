@@ -16,7 +16,8 @@ RUN apt-get update -qq && \
     bc binutils-dev bison build-essential ca-certificates clang \
     cmake cpio curl file flex g++ gcc git libelf-dev libncurses5-dev \
     libssl-dev lld lz4 make ninja-build python3 python3-dev python3-pip \
-    rclone wget xz-utils zlib1g-dev zip zstd libxml2 default-jre bash && \
+    rclone wget xz-utils zlib1g-dev zip zstd libxml2 default-jre bash \
+    llvm llvm-dev llvm-tools && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /usr/share/man /usr/share/doc /usr/share/info
 
