@@ -13,9 +13,10 @@ RUN apt-get update -qq && \
     ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
     apt-get install -y -qq \
-    bc binutils-dev bison build-essential ca-certificates cmake cpio curl file flex \
-    g++ gcc git gh libelf-dev libncurses5-dev libssl-dev lz4 make ninja-build python3 \
-    python3-dev python3-pip rclone xz-utils zlib1g-dev zip zstd libxml2 default-jre bash
+    bash bc binutils-dev bison build-essential ca-certificates cmake cpio curl default-jre \
+    file flex g++ gcc gh git libelf-dev libncurses5-dev libssl-dev \
+    libstdc++-$(apt list libstdc++6 2>/dev/null | grep -Eos '[0-9]+\.[0-9]+\.[0-9]+' | head -1 | cut -d . -f 1)-dev \
+    libxml2 lz4 make ninja-build python3 python3-dev python3-pip rclone texinfo u-boot-tools xz-utils zlib1g-dev zip zstd
 
 RUN wget https://apt.llvm.org/llvm.sh && \
     chmod +x llvm.sh && \
