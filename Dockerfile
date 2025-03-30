@@ -14,7 +14,7 @@ RUN apt-get update -qq && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
     apt-get install -y -qq \
     bc binutils-dev bison build-essential ca-certificates cmake cpio curl file flex \
-    g++ gcc git libelf-dev libncurses5-dev libssl-dev lz4 make ninja-build python3 \
+    g++ gcc git gh libelf-dev libncurses5-dev libssl-dev lz4 make ninja-build python3 \
     python3-dev python3-pip rclone xz-utils zlib1g-dev zip zstd libxml2 default-jre bash
 
 RUN wget https://apt.llvm.org/llvm.sh && \
