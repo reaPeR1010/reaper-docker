@@ -17,17 +17,11 @@ RUN apt-get update -qq && apt-get install -y --no-install-recommends \
 
 # Install required packages
 RUN apt-get install -y --no-install-recommends \
-    bash bc binutils-dev bison build-essential ca-certificates cmake cpio curl default-jre \
+    bash bc binutils-dev bison build-essential ca-certificates clang cmake cpio curl default-jre \
     file flex g++ gcc gh git libelf-dev libncurses5-dev libssl-dev \
     libstdc++-$(apt list libstdc++6 2>/dev/null | grep -Eos '[0-9]+\.[0-9]+\.[0-9]+' | head -1 | cut -d . -f 1)-dev \
-    libxml2 lz4 make ninja-build python3 python3-dev python3-pip rclone texinfo u-boot-tools \
+    libxml2 lld llvm lz4 make ninja-build python3 python3-dev python3-pip rclone texinfo u-boot-tools \
     xz-utils zlib1g-dev zip zstd
-
-# Install LLVM
-RUN wget -q https://apt.llvm.org/llvm.sh && \
-    chmod +x llvm.sh && \
-    ./llvm.sh && \
-    rm -f llvm.sh
 
 # Install ccache
 RUN git clone https://github.com/ccache/ccache && \
