@@ -21,38 +21,21 @@ RUN apt-get update -qq && \
     dpkg-reconfigure -f noninteractive tzdata
 
 # Download and extract AOSP Clang
-RUN mkdir -p /opt/aosp-clang && \
+RUN mkdir -p /opt/temp && \
     curl -L https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master/clang-r547379.tar.gz \
     -o /tmp/clang.tar.gz && \
-    tar -xzf /tmp/clang.tar.gz -C /opt/aosp-clang && \
-    rm /tmp/clang.tar.gz
+    tar -xzf /tmp/clang.tar.gz -C /opt/temp && \
+    mkdir -p /opt/clang && \
+    mv /opt/temp/bin /opt/clang/ && \
+    mv /opt/temp/lib /opt/clang/ && \
+    rm -rf /opt/temp /tmp/clang.tar.gz && \
+    rm -f /opt/clang/lib/*.a /opt/clang/lib/*.la
 
-RUN rm -rf /opt/aosp-clang/include \
-           /opt/aosp-clang/share \
-           /opt/aosp-clang/libexec \
-           /opt/aosp-clang/python3* \
-           /opt/aosp-clang/runtimes_ndk_cxx \
-           /opt/aosp-clang/musl \
-           /opt/aosp-clang/prebuilt_include \
-           /opt/aosp-clang/android_libc++ && \
-    rm -f /opt/aosp-clang/lib/*.a /opt/aosp-clang/lib/*.la && \
-    rm -f /opt/aosp-clang/*.txt \
-          /opt/aosp-clang/*.bazel \
-          /opt/aosp-clang/*INFO \
-          /opt/aosp-clang/*LICENSE* \
-          /opt/aosp-clang/*.json \
-          /opt/aosp-clang/*.py \
-          /opt/aosp-clang/*.pyo \
-          /opt/aosp-clang/*.pyc \
-          /opt/aosp-clang/*.pdb \
-          /opt/aosp-clang/*test* \
-          /opt/aosp-clang/NOTICE \
-          /opt/aosp-clang/.gitattributes && \
-    find /opt/aosp-clang -type f -exec file {} \; | \
+RUN find /opt/clang -type f -exec file {} \; | \
     grep 'ELF' | grep 'not stripped' | cut -d: -f1 | \
-    xargs -r /opt/aosp-clang/bin/llvm-strip --strip-all
+    xargs -r /opt/clang/bin/llvm-strip --strip-all
 
-ENV PATH="/opt/aosp-clang/bin:$PATH"
+ENV PATH="/opt/clang/bin:$PATH"
 
 # Install ccache
 RUN git clone https://github.com/ccache/ccache && \
