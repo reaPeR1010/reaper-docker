@@ -13,7 +13,7 @@ RUN apt-get update -qq && \
     bash bc binutils-dev bison build-essential ca-certificates cmake cpio curl default-jre \
     file flex g++ gcc gh git libelf-dev libncurses5-dev libssl-dev \
     libxml2 lz4 make ninja-build python3 python3-dev python3-pip rclone texinfo u-boot-tools \
-    xz-utils zlib1g-dev zip unzip p7zip pigz zstd && \
+    xz-utils zlib1g-dev zip unzip p7zip pigz zstd openssh-client && \
     echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen en_US.UTF-8 && \
     update-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 && \
