@@ -22,7 +22,7 @@ RUN apt-get update -qq && \
 
 # Download and extract AOSP Clang
 RUN mkdir -p /opt/temp && \
-    curl -L https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master/clang-r547379.tar.gz \
+    curl -L https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/mirror-goog-main-prebuilts/clang-r563880.tar.gz \
     -o /tmp/clang.tar.gz && \
     tar -xzf /tmp/clang.tar.gz -C /opt/temp && \
     mkdir -p /opt/clang && \
