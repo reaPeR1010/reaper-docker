@@ -44,6 +44,12 @@ RUN git clone https://github.com/ccache/ccache && \
     cmake --build . --target install -j$(nproc) && \
     cd ../.. && rm -rf ccache
 
+# apt update
+RUN apt update
+
+# Install sudo
+RUN apt install apt-utils sudo -y
+
 # Setup Android Build Environment
 RUN git clone https://github.com/akhilnarang/scripts.git && \
     sudo bash scripts/setup/android_build_env.sh && \
