@@ -44,6 +44,11 @@ RUN git clone https://github.com/ccache/ccache && \
     cmake --build . --target install -j$(nproc) && \
     cd ../.. && rm -rf ccache
 
+# Setup Android Build Environment
+RUN git clone https://github.com/akhilnarang/scripts.git && \
+    sudo bash scripts/setup/android_build_env.sh && \
+    rm -rf scripts
+
 # Final cleanup to reduce image size
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /usr/share/man/* /usr/share/doc/* /usr/share/info/* /tmp/*
