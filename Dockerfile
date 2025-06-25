@@ -48,7 +48,7 @@ RUN git clone https://github.com/ccache/ccache && \
 RUN apt update
 
 # Install sudo
-RUN apt install apt-utils sudo -y
+RUN apt install apt-utils sudo rsync -y
 
 # Setup Android Build Environment
 RUN git clone https://github.com/akhilnarang/scripts.git && \
